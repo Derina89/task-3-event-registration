@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrations | TechConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                Tech<span>Connect</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Event</a>
+                <a href="register.html">Register</a>
+                <a href="registrations.html" class="active">Registrations</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Page Header -->
+    <section class="page-hero">
+        <div class="container">
+
+            <span class="eyebrow">EVENT MANAGEMENT</span>
+
+            <h1>Registered <span>Participants</span></h1>
+
+            <p>
+                View the participants who have registered for the
+                Web Development Workshop.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- Registrations -->
+    <main class="container registrations-section">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">LIVE DATA</span>
+                <h2>Registration List</h2>
+            </div>
+
+            <span id="registrationCount" class="registration-count">
+                Loading...
+            </span>
+        </div>
+
+
+        <!-- Loading -->
+        <div id="loadingMessage" class="status-message">
+            Loading registrations...
+        </div>
+
+
+        <!-- Error -->
+        <div id="errorMessage" class="status-message error">
+        </div>
+
+
+        <!-- Empty -->
+        <div id="emptyMessage" class="status-message empty">
+            No registrations found yet.
+        </div>
+
+
+        <!-- Registration Cards -->
+        <div id="registrationsList" class="registrations-grid">
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 TechConnect. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        async function loadRegistrations() {
+
+            const loadingMessage =
+                document.getElementById("loadingMessage");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const emptyMessage =
+                document.getElementById("emptyMessage");
+
+            const registrationsList =
+                document.getElementById("registrationsList");
+
+            const registrationCount =
+                document.getElementById("registrationCount");
+
+
+            try {
+
+                const response =
+                    await fetch("/api/registrations");
+
+
+                const data =
+                    await response.json();
+
+
+                loadingMessage.style.display = "none";
+
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load registrations."
+                    );
+
+                }
+
+
+                const registrations =
+                    data.registrations;
+
+
+                registrationCount.textContent =
+                    `${registrations.length} Registered`;
+
+
+                if (registrations.length === 0) {
+
+                    emptyMessage.style.display = "block";
+
+                    return;
+
+                }
+
+
+                emptyMessage.style.display = "none";
+
+
+                registrationsList.innerHTML =
+                    registrations.map((registration, index) => {
+
+                        const date =
+                            new Date(
+                                registration.createdAt
+                            ).toLocaleString();
+
+
+                        return `
+
+                            <article class="registration-card">
+
+                                <div class="registration-number">
+                                    ${index + 1}
+                                </div>
+
+                                <div class="registration-content">
+
+                                    <h3>
+                                        ${escapeHTML(registration.name)}
+                                    </h3>
+
+                                    <p class="registration-event">
+                                        ${escapeHTML(registration.event)}
+                                    </p>
+
+                                    <div class="registration-details">
+
+                                        <p>
+                                            <strong>Email:</strong>
+                                            ${escapeHTML(registration.email)}
+                                        </p>
+
+                                        <p>
+                                            <strong>Phone:</strong>
+                                            ${escapeHTML(registration.phone)}
+                                        </p>
+
+                                        <p>
+                                            <strong>Registered:</strong>
+                                            ${date}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        `;
+
+                    }).join("");
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                loadingMessage.style.display = "none";
+
+                errorMessage.textContent =
+                    "Unable to load registrations. Please make sure the server is running.";
+
+                errorMessage.style.display = "block";
+
+            }
+
+        }
+
+
+        function escapeHTML(value) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent = value;
+
+            return div.innerHTML;
+
+        }
+
+
+        loadRegistrations();
+
+    </script>
+
+</body>
+</html>

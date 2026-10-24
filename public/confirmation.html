@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Confirmed | TechConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                Tech<span>Connect</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Event</a>
+                <a href="register.html">Register</a>
+                <a href="registrations.html">Registrations</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Confirmation -->
+    <main class="confirmation-page">
+
+        <div class="confirmation-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <span class="event-badge">
+                Registration Successful
+            </span>
+
+            <h1>
+                You're <span>registered!</span>
+            </h1>
+
+            <p class="confirmation-text">
+                Your registration for the Web Development
+                Workshop has been successfully received.
+            </p>
+
+
+            <!-- Registration Details -->
+            <div
+                id="registrationDetails"
+                class="registration-summary">
+            </div>
+
+
+            <div class="confirmation-buttons">
+
+                <a
+                    href="index.html"
+                    class="btn secondary-btn">
+                    Back to Event
+                </a>
+
+                <a
+                    href="registrations.html"
+                    class="btn primary-btn">
+                    View Registrations →
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 TechConnect. Built for learning.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        const details =
+            document.getElementById(
+                "registrationDetails"
+            );
+
+        const savedRegistration =
+            sessionStorage.getItem(
+                "registration"
+            );
+
+
+        if (savedRegistration) {
+
+            const registration =
+                JSON.parse(savedRegistration);
+
+
+            details.innerHTML = `
+
+                <div class="summary-item">
+                    <span>Name</span>
+                    <strong>
+                        ${registration.name}
+                    </strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Email</span>
+                    <strong>
+                        ${registration.email}
+                    </strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Phone</span>
+                    <strong>
+                        ${registration.phone}
+                    </strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Event</span>
+                    <strong>
+                        ${registration.event}
+                    </strong>
+                </div>
+
+            `;
+
+        } else {
+
+            details.innerHTML = `
+                <p class="no-registration">
+                    Registration details are not available
+                    on this page.
+                </p>
+            `;
+
+        }
+
+    </script>
+
+</body>
+</html>

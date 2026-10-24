@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | TechConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                Tech<span>Connect</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Event</a>
+                <a href="register.html" class="active">Register</a>
+                <a href="registrations.html">Registrations</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Registration Hero -->
+    <section class="form-hero">
+
+        <div class="form-hero-content">
+
+            <span class="event-badge">
+                ✦ Event Registration
+            </span>
+
+            <h1>
+                Reserve your
+                <span>spot.</span>
+            </h1>
+
+            <p>
+                Fill in your details below to register
+                for the Web Development Workshop.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Registration Form -->
+    <section class="registration-section">
+
+        <div class="registration-container">
+
+            <div class="form-card">
+
+                <div class="form-heading">
+
+                    <h2>
+                        Participant Details
+                    </h2>
+
+                    <p>
+                        Please provide accurate information
+                        to complete your registration.
+                    </p>
+
+                </div>
+
+
+                <form id="registrationForm">
+
+                    <!-- Name -->
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                        >
+
+                        <small
+                            class="form-error"
+                            id="nameError">
+                        </small>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                        >
+
+                        <small
+                            class="form-error"
+                            id="emailError">
+                        </small>
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10-digit phone number"
+                            maxlength="10"
+                        >
+
+                        <small
+                            class="form-error"
+                            id="phoneError">
+                        </small>
+
+                    </div>
+
+
+                    <!-- Event -->
+                    <div class="form-group">
+
+                        <label for="event">
+                            Select Event
+                        </label>
+
+                        <select id="event" name="event">
+
+                            <option value="">
+                                Choose an event
+                            </option>
+
+                            <option value="Web Development Workshop">
+                                Web Development Workshop
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="form-error"
+                            id="eventError">
+                        </small>
+
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="btn primary-btn submit-btn">
+
+                        Complete Registration →
+
+                    </button>
+
+
+                    <!-- Success Message -->
+                    <div
+                        id="formMessage"
+                        class="form-message">
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- Side Information -->
+            <div class="registration-info">
+
+                <span class="info-label">
+                    YOUR EVENT
+                </span>
+
+                <h2>
+                    Web Development
+                    Workshop
+                </h2>
+
+                <p>
+                    A beginner-friendly session covering
+                    the foundations of modern web development.
+                </p>
+
+
+                <div class="info-item">
+
+                    <span>📅</span>
+
+                    <div>
+                        <strong>Date</strong>
+                        <p>15 October 2026</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>⏰</span>
+
+                    <div>
+                        <strong>Time</strong>
+                        <p>10:00 AM – 1:00 PM</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>📍</span>
+
+                    <div>
+                        <strong>Location</strong>
+                        <p>Innovation Hall</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 TechConnect. Built for learning.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
